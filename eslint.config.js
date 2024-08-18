@@ -1,21 +1,20 @@
 // eslint.config.js
-module.exports = [
-    {
-      files: ['src/**/*.js'],
-      rules: {
-        // Add your custom rules here
-        'no-unused-vars': 'warn',
-        'no-console': 'off'
+import js from '@eslint/js';
+
+export default [
+  js.configs.recommended,
+  {
+    files: ['src/**/*.js'],
+    languageOptions: {
+      ecmaVersion: 2021,
+      sourceType: 'module',
+      globals: {
+        console: 'readonly',
       },
-      env: {
-        browser: true,
-        es2021: true
-      },
-      extends: 'eslint:recommended',
-      parserOptions: {
-        ecmaVersion: 12,
-        sourceType: 'module'
-      }
-    }
-  ];
-  
+    },
+    rules: {
+      'no-unused-vars': 'warn',
+      'no-console': 'off', // Optionally, you can turn off this rule if console logging is intended
+    },
+  },
+];

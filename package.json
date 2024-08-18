@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "PHP development",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint-js": "eslint src/**/*.js",
@@ -22,6 +23,7 @@
   },
   "homepage": "https://github.com/melquilegend/webapp#readme",
   "devDependencies": {
+    "@eslint/js": "^9.9.0",
     "eslint": "^9.9.0",
     "sass": "^1.77.8",
     "stylelint": "^16.8.2"

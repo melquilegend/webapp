@@ -63,8 +63,13 @@ jobs:
     - name: Run JavaScript linting
       run: npm run lint-js
 
-    - name: Run SCSS linting
-      run: npm run lint-scss
+    - name: Run SCSS linting if SCSS files exist
+      run: |
+        if ls src/scss/**/*.scss 1> /dev/null 2>&1; then
+          stylelint 'src/scss/**/*.scss';
+        else
+          echo "No SCSS files found.";
+        fi
 
     - name: Build CSS
       run: npm run build

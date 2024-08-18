@@ -1,0 +1,64 @@
+name: CI Pipeline for PHP Project
+
+on:
+  push:
+    branches:
+      - main
+      - development
+  pull_request:
+    branches:
+      - main
+      - development
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: rootpassword
+          MYSQL_DATABASE: mydatabase
+          MYSQL_USER: myuser
+          MYSQL_PASSWORD: mypassword
+        options: >-
+          --health-cmd="mysqladmin ping --silent"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=3
+        ports:
+          - 3306:3306
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.2'
+        extensions: pdo_mysql, mbstring, zip, gd
+
+    - name: Install Composer dependencies
+      run: composer install --prefer-dist --no-progress --no-suggest
+
+    - name: Run PHPUnit tests
+      run: ./vendor/bin/phpunit --testdox
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14'
+
+    - name: Install NPM dependencies
+      run: npm install
+
+    - name: Run JavaScript linting
+      run: npm run lint-js
+
+    - name: Run SCSS linting
+      run: npm run lint-scss
+
+    - name: Build CSS
+      run: npm run build

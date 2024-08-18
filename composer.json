@@ -1,0 +1,27 @@
+{
+    "name": "melqui_vunge/webapp",
+    "description": "A brief description of your project",
+    "require": {
+        "php": ">=7.4"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "scripts": {
+        "test": "phpunit",
+        "lint-js": "eslint src/**/*.js",
+        "lint-scss": "stylelint '**/*.scss'",
+        "build-css": "sass src/scss:dist/css",
+        "build": "npm run build-css"
+    },
+    "devDependencies": {
+        "eslint": "^7.32.0",
+        "stylelint": "^13.13.1",
+        "sass": "^1.32.8"
+    }
+}

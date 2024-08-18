@@ -4,7 +4,11 @@
   "description": "PHP development",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint-js": "eslint src/**/*.js",
+    "lint-scss": "stylelint '**/*.scss'",
+    "build-css": "sass src/scss:dist/css",
+    "build": "npm run build-css"
   },
   "repository": {
     "type": "git",

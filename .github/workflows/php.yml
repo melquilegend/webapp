@@ -43,6 +43,9 @@ jobs:
     - name: Install Composer dependencies
       run: composer install --prefer-dist --no-progress --no-suggest
 
+    - name: Verify test directory path
+      run: ls -al ./tests
+
     - name: Run PHPUnit tests
       run: ./vendor/bin/phpunit --testdox
 

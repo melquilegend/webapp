@@ -43,6 +43,12 @@ jobs:
     - name: Install Composer dependencies
       run: composer install --prefer-dist --no-progress --no-suggest
 
+    - name: Print working directory and contents
+      run: |
+        pwd
+        ls -al
+    
+
     - name: Run PHPUnit tests
       run: ./vendor/bin/phpunit --testdox
 
